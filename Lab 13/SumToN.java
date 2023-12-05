@@ -36,7 +36,7 @@ class Sum extends Thread
 
 class SumToN
 {
-    public static void main(String[] args) 
+    public static void main(String[] args) throws InterruptedException
     {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter num:\t"); int num = sc.nextInt();
@@ -50,6 +50,14 @@ class SumToN
             //t.start();
             //Sum s = new Sum((i*(num/n) + 1),((i+1)*num/n));
             s[i].start();
+            try
+            {
+                s[i].join();
+            }
+            catch(InterruptedException e)
+            {
+                System.out.println(e.getMessage());
+            }
         }
     }
 }
